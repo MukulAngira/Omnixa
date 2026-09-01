@@ -6,6 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings 
 from app.core.database import connect_to_mongo , close_mongo_connection
+from app.routers import (
+    auth
+)
 
 
 
@@ -51,6 +54,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "Internal server error"}
     )
 
+app.include_router(auth.router)
 
 '''
 --DEAR RIYA,
